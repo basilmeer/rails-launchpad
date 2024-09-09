@@ -1,11 +1,11 @@
 meta {
-  name: Sign Up
+  name: Sign In
   type: http
-  seq: 2
+  seq: 1
 }
 
 post {
-  url: {{API_HOST}}/auth/sign_up
+  url: {{API_HOST}}/auth/sign_in
   body: json
   auth: none
 }
@@ -18,11 +18,7 @@ headers {
 body:json {
   {
     "user": {
-      "first_name": "Test 3",
-      "last_name": "Admin",
-      "gender": "male",
-      "dob": "1990-01-01",
-      "email": "test_3@admin.com",
+      "email": "test@admin.com",
       "password": "123123"
     }
   }
@@ -30,7 +26,7 @@ body:json {
 
 script:post-response {
   // Assuming the Authorization token is in the response header
-  const authHeader = res.body;
+  const authHeader = res.headers.authorization;
   
   if (authHeader) {
     bru.setEnvVar('AUTH_TOKEN', authHeader);

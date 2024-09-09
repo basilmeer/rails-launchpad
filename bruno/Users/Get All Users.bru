@@ -1,0 +1,40 @@
+meta {
+  name: Get All Users
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{API_HOST}}/users
+  body: json
+  auth: none
+}
+
+headers {
+  Accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "user": {
+      "first_name": "Test",
+      "last_name": "Admin",
+      "gender": "male",
+      "dob": "1990-01-01",
+      "email": "test@admin.com",
+      "password": "123123"
+    }
+  }
+}
+
+script:pre-request {
+  const authHeader = bru.getEnvVar("AUTH_TOKEN");
+  
+  if (authHeader) {
+    req.setHeader('Authorization', authHeader);
+  } else {
+    console.log('No authorization header exists');
+  }
+  
+}
