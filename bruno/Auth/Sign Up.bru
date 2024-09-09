@@ -30,7 +30,7 @@ body:json {
 
 script:post-response {
   // Assuming the Authorization token is in the response header
-  const authHeader = res.body;
+  const authHeader = res.headers.authorization;
   
   if (authHeader) {
     bru.setEnvVar('AUTH_TOKEN', authHeader);
