@@ -44,12 +44,6 @@ To use this template, follow these steps:
    rails server
    ```
 
-Or you can generate a new project using
-
-```sh
-$ rails new PROJECT_NAME --api --database=postgresql -m https://github.com/basilmeer/rails-launchpad.git
-```
-
 And you should be good to go.
 
 ## Customization :pencil:
